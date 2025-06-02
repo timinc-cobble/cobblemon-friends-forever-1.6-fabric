@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "friends_forever",
+  "version": "1.6-fabric-1.0.0",
+  "name": "Friends Forever",
+  "description": "An alternative to catching Pokemon in Cobblemon; just feed them until they like you!",
+  "authors": [
+    "timinc aka Timothy Metcalfe"
+  ],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "us.timinc.mc.cobblemon.friendsforever.FriendsForeverMod"
+      }
+    ]
+  },
+  "mixins": [
+    "friends-forever.mixins.json"
+  ],
+  "depends": {
+    "java": ">=21",
+    "minecraft": "1.21.1",
+    "fabric": "*",
+    "cobblemon": ">=1.6.0 <1.7.0"
+  }
+}

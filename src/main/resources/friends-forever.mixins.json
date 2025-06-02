@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "us.timinc.mc.cobblemon.friendsforever.mixins",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "PokemonEntityMixin"
+  ],
+  "client": [],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
