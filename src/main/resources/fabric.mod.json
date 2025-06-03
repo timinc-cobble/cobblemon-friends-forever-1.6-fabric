@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "id": "friends_forever",
-  "version": "1.6-fabric-1.0.0",
+  "version": "1.6-fabric-1.1.0",
   "name": "Friends Forever",
-  "description": "An alternative to catching Pokemon in Cobblemon; just feed them until they like you!",
+  "description": "Feed Pokemon to grow their affection and make them join your team in Cobblemon!",
   "authors": [
     "timinc aka Timothy Metcalfe"
   ],
