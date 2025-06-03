@@ -1,0 +1,11 @@
+{
+  "food": {
+    "item": "minecraft:cooked_mutton"
+  },
+  "baseAffection": 16,
+  "flavors": [
+    {
+      "flavor": "SPICY"
+    }
+  ]
+}

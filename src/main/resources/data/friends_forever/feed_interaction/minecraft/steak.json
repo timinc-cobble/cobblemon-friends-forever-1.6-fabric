@@ -1,0 +1,11 @@
+{
+  "food": {
+    "item": "minecraft:steak"
+  },
+  "baseAffection": 16,
+  "flavors": [
+    {
+      "flavor": "BITTER"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "food": {
+    "item": "minecraft:melon_slice"
+  },
+  "baseAffection": 5,
+  "flavors": [
+    {
+      "flavor": "SPICY"
+    }
+  ]
+}

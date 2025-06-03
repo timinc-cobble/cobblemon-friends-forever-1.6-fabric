@@ -1,0 +1,14 @@
+{
+  "food": {
+    "item": "cobblemon:strawberry_sweet"
+  },
+  "baseAffection": 15,
+  "flavors": [
+    {
+      "flavor": "SWEET"
+    },
+    {
+      "flavor": "SOUR"
+    }
+  ]
+}
