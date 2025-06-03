@@ -46,12 +46,13 @@ object FriendsForeverMod : FabricMod<FriendsForeverConfig>(
         val matched = FeedInteractionRecipe.Manager.getStrongest(stack, pokemon) ?: return
         val added = matched.getEffectValue(pokemon)
         val effect = matched.getLikeBooster(pokemon)
+        val preEvent = FeedEvent.Pre(stack, pokemon, playerEntity, matched, added)
         FriendsForeverEvents.FEED_PRE.postThen(
-            FeedEvent.Pre(stack, pokemon, playerEntity, matched),
+            preEvent,
             ifSucceeded = {
                 AFFECTION.updateForPlayer(
                     pokemon, playerEntity
-                ) { it + added }
+                ) { it + preEvent.added }
                 val effectivenessMessage = if (effect > 1) {
                     "friends_forever.feeding.liked"
                 } else if (effect < 1) {
@@ -84,7 +85,7 @@ object FriendsForeverMod : FabricMod<FriendsForeverConfig>(
                 stack.shrink(1)
                 if (pokemon.isReallyWild()) attemptJoinParty(pokemonEntity, playerEntity)
                 FriendsForeverEvents.FEED_POST.post(
-                    FeedEvent.Post(stack, pokemon, playerEntity, matched)
+                    FeedEvent.Post(stack, pokemon, playerEntity, matched, preEvent.added)
                 )
             }
         )
