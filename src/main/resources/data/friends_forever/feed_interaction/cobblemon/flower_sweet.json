@@ -10,5 +10,8 @@
     {
       "flavor": "DRY"
     }
+  ],
+  "blacklist": [
+    "alcremie"
   ]
 }

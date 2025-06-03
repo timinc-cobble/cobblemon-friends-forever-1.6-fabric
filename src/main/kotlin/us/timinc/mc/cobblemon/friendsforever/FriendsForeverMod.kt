@@ -44,7 +44,6 @@ object FriendsForeverMod : FabricMod<FriendsForeverConfig>(
             FeedEvent.Pre(stack, pokemon, playerEntity, matched),
             ifSucceeded = {
                 matched.affectPokemon(pokemon, playerEntity)
-                stack.shrink(1)
                 val effect = matched.getLikeBooster(pokemon)
                 val effectivenessMessage = if (effect > 1) {
                     "friends_forever.feeding.liked"
@@ -60,6 +59,7 @@ object FriendsForeverMod : FabricMod<FriendsForeverConfig>(
                         stack.displayName
                     ), true
                 )
+                stack.shrink(1)
                 if (pokemon.isReallyWild()) attemptJoinParty(pokemonEntity, playerEntity)
                 FriendsForeverEvents.FEED_POST.post(
                     FeedEvent.Post(stack, pokemon, playerEntity, matched)

@@ -1,6 +1,6 @@
 {
   "food": {
-    "item": "minecraft:steak"
+    "item": "minecraft:cooked_beef"
   },
   "baseAffection": 16,
   "flavors": [
