@@ -1,6 +1,7 @@
 {
-  "friends_forever.feeding.full": "%1$s is full of affection towards you!",
-  "friends_forever.feeding.liked": "%1$s liked the %2$s you fed it.",
-  "friends_forever.feeding.disliked": "%1$s disliked the %2$s you fed it.",
-  "friends_forever.feeding.confirm": "%1$s thanks you for the %2$s."
+  "friends_forever.feeding.full": "%1$s is full of affection towards you!%3$s",
+  "friends_forever.feeding.liked": "%1$s liked the %2$s you fed it.%3$s",
+  "friends_forever.feeding.disliked": "%1$s disliked the %2$s you fed it.%3$s",
+  "friends_forever.feeding.confirm": "%1$s thanks you for the %2$s.%3$s",
+  "friends_forever.parts.current_affection": " (%1$s)"
 }
