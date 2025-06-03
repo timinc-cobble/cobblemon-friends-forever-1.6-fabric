@@ -1,6 +1,5 @@
 package us.timinc.mc.cobblemon.friendsforever.recipe
 
-import com.cobblemon.mod.common.api.pokemon.PokemonProperties
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.google.gson.Gson
 import com.google.gson.JsonElement
