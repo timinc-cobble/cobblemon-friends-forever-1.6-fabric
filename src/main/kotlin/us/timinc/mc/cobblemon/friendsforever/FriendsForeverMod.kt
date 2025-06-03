@@ -2,11 +2,14 @@ package us.timinc.mc.cobblemon.friendsforever
 
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
+import com.cobblemon.mod.common.util.sendParticlesServer
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper
+import net.minecraft.core.particles.ParticleTypes
 import net.minecraft.network.chat.Component
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.server.packs.PackType
 import net.minecraft.world.item.ItemStack
+import net.minecraft.world.phys.Vec3
 import us.timinc.mc.cobblemon.friendsforever.api.tim.cobblemon.isReallyWild
 import us.timinc.mc.cobblemon.friendsforever.api.tim.fabric.FabricMod
 import us.timinc.mc.cobblemon.friendsforever.config.FriendsForeverConfig
@@ -30,7 +33,7 @@ object FriendsForeverMod : FabricMod<FriendsForeverConfig>(
 
     fun attemptFeed(pokemonEntity: PokemonEntity, stack: ItemStack, playerEntity: ServerPlayer) {
         val pokemon = pokemonEntity.pokemon
-        if (FriendsForeverPersistentProperties.AFFECTION.getForPlayer(pokemon, playerEntity) >= config.maxPoints) {
+        if (AFFECTION.getForPlayer(pokemon, playerEntity) >= config.maxPoints) {
             playerEntity.sendSystemMessage(
                 Component.translatable(
                     "friends_forever.feeding.full",
@@ -68,6 +71,16 @@ object FriendsForeverMod : FabricMod<FriendsForeverConfig>(
                         ) else "",
                     ), true
                 )
+                if (config.showHeartsOnFeed) {
+                    val level = pokemonEntity.level()
+                    level.sendParticlesServer(
+                        ParticleTypes.HEART,
+                        pokemonEntity.eyePosition.add(0.0, 0.5, 0.0),
+                        added.toInt(),
+                        Vec3(0.35, 0.1, 0.35),
+                        0.1
+                    )
+                }
                 stack.shrink(1)
                 if (pokemon.isReallyWild()) attemptJoinParty(pokemonEntity, playerEntity)
                 FriendsForeverEvents.FEED_POST.post(
@@ -79,7 +92,7 @@ object FriendsForeverMod : FabricMod<FriendsForeverConfig>(
 
     fun attemptJoinParty(pokemonEntity: PokemonEntity, playerEntity: ServerPlayer) {
         val joinChance = getJoinChance(
-            FriendsForeverPersistentProperties.AFFECTION.getForPlayer(pokemonEntity.pokemon, playerEntity),
+            AFFECTION.getForPlayer(pokemonEntity.pokemon, playerEntity),
             config.rate
         ) * config.maxChance
         val roll = nextFloat()
