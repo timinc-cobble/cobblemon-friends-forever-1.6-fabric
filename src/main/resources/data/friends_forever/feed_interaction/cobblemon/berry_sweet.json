@@ -1,0 +1,17 @@
+{
+  "food": {
+    "item": "cobblemon:berry_sweet"
+  },
+  "baseAffection": 15,
+  "flavors": [
+    {
+      "flavor": "BITTER"
+    },
+    {
+      "flavor": "SOUR"
+    }
+  ],
+  "blacklist": [
+    "alcremie"
+  ]
+}

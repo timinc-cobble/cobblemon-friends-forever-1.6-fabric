@@ -1,0 +1,11 @@
+{
+  "food": {
+    "item": "minecraft:carrot"
+  },
+  "baseAffection": 5,
+  "flavors": [
+    {
+      "flavor": "SOUR"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "food": {
+    "item": "minecraft:cooked_chicken"
+  },
+  "baseAffection": 16,
+  "flavors": [
+    {
+      "flavor": "SOUR"
+    }
+  ]
+}

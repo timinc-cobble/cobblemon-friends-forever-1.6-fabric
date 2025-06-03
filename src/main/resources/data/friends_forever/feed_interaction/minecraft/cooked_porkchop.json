@@ -1,8 +1,8 @@
 {
   "food": {
-    "item": "minecraft:bread"
+    "item": "minecraft:cooked_porkchop"
   },
-  "baseAffection": 10,
+  "baseAffection": 16,
   "flavors": [
     {
       "flavor": "DRY"
