@@ -14,6 +14,7 @@ import us.timinc.mc.cobblemon.friendsforever.event.FeedEvent
 import us.timinc.mc.cobblemon.friendsforever.event.FriendsForeverEvents
 import us.timinc.mc.cobblemon.friendsforever.recipe.FeedInteractionRecipe
 import us.timinc.mc.cobblemon.friendsforever.registry.FriendsForeverPersistentProperties
+import us.timinc.mc.cobblemon.friendsforever.registry.FriendsForeverPersistentProperties.AFFECTION
 import kotlin.math.exp
 import kotlin.math.min
 import kotlin.random.Random.Default.nextFloat
@@ -40,11 +41,14 @@ object FriendsForeverMod : FabricMod<FriendsForeverConfig>(
             return
         }
         val matched = FeedInteractionRecipe.Manager.getStrongest(stack, pokemon) ?: return
+        val added = matched.getEffectValue(pokemon)
+        val effect = matched.getLikeBooster(pokemon)
         FriendsForeverEvents.FEED_PRE.postThen(
             FeedEvent.Pre(stack, pokemon, playerEntity, matched),
             ifSucceeded = {
-                matched.affectPokemon(pokemon, playerEntity)
-                val effect = matched.getLikeBooster(pokemon)
+                AFFECTION.updateForPlayer(
+                    pokemon, playerEntity
+                ) { it + added }
                 val effectivenessMessage = if (effect > 1) {
                     "friends_forever.feeding.liked"
                 } else if (effect < 1) {
@@ -52,11 +56,16 @@ object FriendsForeverMod : FabricMod<FriendsForeverConfig>(
                 } else {
                     "friends_forever.feeding.confirm"
                 }
+                val current = AFFECTION.getForPlayer(pokemon, playerEntity)
                 playerEntity.sendSystemMessage(
                     Component.translatable(
                         effectivenessMessage,
                         pokemon.getDisplayName(),
-                        stack.displayName
+                        stack.displayName,
+                        if (config.showAffectionOnFeed) Component.translatable(
+                            "friends_forever.parts.current_affection",
+                            current
+                        ) else "",
                     ), true
                 )
                 stack.shrink(1)

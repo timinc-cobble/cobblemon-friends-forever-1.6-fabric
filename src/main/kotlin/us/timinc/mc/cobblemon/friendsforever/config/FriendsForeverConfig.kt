@@ -5,4 +5,5 @@ class FriendsForeverConfig {
     val maxChance: Float = 1F
     val maxPoints: Float = 255F
     val rate: Float = 5F
+    val showAffectionOnFeed: Boolean = false
 }
