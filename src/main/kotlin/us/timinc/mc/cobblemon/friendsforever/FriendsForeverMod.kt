@@ -33,26 +33,18 @@ object FriendsForeverMod : FabricMod<FriendsForeverConfig>(
 
     fun attemptFeed(pokemonEntity: PokemonEntity, stack: ItemStack, playerEntity: ServerPlayer) {
         val pokemon = pokemonEntity.pokemon
-        if (AFFECTION.getForPlayer(pokemon, playerEntity) >= config.maxPoints) {
-            playerEntity.sendSystemMessage(
-                Component.translatable(
-                    "friends_forever.feeding.full",
-                    pokemon.getDisplayName()
-                ),
-                true
-            )
-            return
-        }
+
         val matched = FeedInteractionRecipe.Manager.getStrongest(stack, pokemon) ?: return
         val added = matched.getEffectValue(pokemon)
         val effect = matched.getLikeBooster(pokemon)
+
         val preEvent = FeedEvent.Pre(stack, pokemon, playerEntity, matched, added)
         FriendsForeverEvents.FEED_PRE.postThen(
             preEvent,
             ifSucceeded = {
                 AFFECTION.updateForPlayer(
                     pokemon, playerEntity
-                ) { it + preEvent.added }
+                ) { min(it + preEvent.added, config.maxPoints) }
                 val effectivenessMessage = if (effect > 1) {
                     "friends_forever.feeding.liked"
                 } else if (effect < 1) {
