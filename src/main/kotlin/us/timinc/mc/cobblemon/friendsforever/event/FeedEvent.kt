@@ -11,12 +11,14 @@ interface FeedEvent {
     val pokemon: Pokemon
     val player: ServerPlayer
     val recipe: FeedInteractionRecipe
+    var added: Float
 
     class Pre(
         override val stack: ItemStack,
         override val pokemon: Pokemon,
         override val player: ServerPlayer,
         override val recipe: FeedInteractionRecipe,
+        override var added: Float,
     ) : FeedEvent, Cancelable()
 
     class Post(
@@ -24,5 +26,6 @@ interface FeedEvent {
         override val pokemon: Pokemon,
         override val player: ServerPlayer,
         override val recipe: FeedInteractionRecipe,
+        override var added: Float,
     ) : FeedEvent
 }
