@@ -91,6 +91,7 @@ object FriendsForeverMod : FabricMod<FriendsForeverConfig>(
         val roll = nextFloat()
         if (roll <= joinChance) {
             Cobblemon.storage.getParty(playerEntity).add(pokemonEntity.pokemon)
+            pokemonEntity.discard()
             playerEntity.sendSystemMessage(Component.literal("The Pokemon has joined your party!"), true)
         }
     }
