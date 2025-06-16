@@ -100,8 +100,13 @@ object FriendsForeverMod : FabricMod<FriendsForeverConfig>(
                     1.0
                 )
             }
+            playerEntity.sendSystemMessage(
+                Component.translatable(
+                    "friends_forever.feeding.joined",
+                    pokemonEntity.pokemon.getDisplayName()
+                ), true
+            )
             pokemonEntity.discard()
-            playerEntity.sendSystemMessage(Component.literal("The Pokemon has joined your party!"), true)
         }
     }
 
