@@ -7,4 +7,5 @@ class FriendsForeverConfig {
     val rate: Float = 5F
     val showAffectionOnFeed: Boolean = false
     val showHeartsOnFeed: Boolean = false
+    val showPoofOnJoin: Boolean = true
 }
